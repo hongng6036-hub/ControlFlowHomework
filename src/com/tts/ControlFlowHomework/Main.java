@@ -1,4 +1,7 @@
 package com.tts.ControlFlowHomework;
+import com.sun.source.tree.ContinueTree;
+
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -52,7 +55,7 @@ public class Main {
                 System.out.println("\nDo you have a favorite quarterback?");
                 String quarterBack = userInput.next();
 
-                    if (quarterBack.equalsIgnoreCase("Yes") || quarterBack.equalsIgnoreCase("Y")) {
+                if (quarterBack.equalsIgnoreCase("Yes") || quarterBack.equalsIgnoreCase("Y")) {
                         System.out.println("What is their jersey number?");
                         String quarterBackJersey = userInput.next();
                     } else {
@@ -86,7 +89,42 @@ public class Main {
                 System.out.println("Favorite actor/actress name: " + actorActress);
                 System.out.println("Random number: " +randomNumber);
 
-                msg = "Thank you for completing the survey! Stay tuned for your auto-generated magic ball numbers.";
+
+                //Generating 5 non-magic numbers for lottery number
+                int[] arrayLotteryNumber = new int[5];
+                arrayLotteryNumber[0] = carModelYear + luckyNumber;
+                arrayLotteryNumber[1] = 42;
+                arrayLotteryNumber[2] = petAge + carModelYear;
+                arrayLotteryNumber[3] = randomNumber - arrayLotteryNumber[0];
+
+                //Convert first letter of favorite actor or actress to an integer
+                char actorLastChar = actorActress.charAt(0);
+                int lotteryNumberFour = actorLastChar;
+                arrayLotteryNumber[4] = lotteryNumberFour;
+
+
+                //Convert last letter of favorite actor or actress to an integer
+//                char actorFirstChar = actorActress.charAt(actorActress.length()-1);
+//                int lotteryNumberFive = actorFirstChar;
+//                arrayLotteryNumber[5] = lotteryNumberFive;
+
+                //Convert third letter of favorite pet name to an integer
+//                char petThirdChar = petName.charAt(3);
+//                int lotteryNumberSix = petThirdChar;
+//                arrayLotteryNumber[6] = lotteryNumberSix;
+
+                System.out.println("Lottery numbers: " + Arrays.toString(arrayLotteryNumber));
+
+                int magicBallNumber = luckyNumber * randomNumber;
+                boolean validMagicBallNumber = magicBallNumber > 0 && magicBallNumber < 75;
+                    if (validMagicBallNumber == true) {
+                        System.out.println("Magic ball number: " + validMagicBallNumber);
+                    } else if (validMagicBallNumber == false) {
+                        magicBallNumber = (luckyNumber * randomNumber) - 75;
+                        System.out.println("Magic ball number: " + magicBallNumber);
+                      }
+
+            msg = "Thank you for completing the survey!";
                 break;
 
             default:
